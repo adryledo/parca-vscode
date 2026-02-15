@@ -1,0 +1,88 @@
+{
+    "name": "parca",
+    "displayName": "PARCA - Agent Asset Manager",
+    "description": "Protocol of Asset Resolution for Coding Agents. Manage versioned prompts, skills, and instructions from remote Git repositories.",
+    "version": "0.1.0",
+    "publisher": "parca",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "main": "./out/extension.js",
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "workspaceContains:.parca-assets.yaml"
+    ],
+    "contributes": {
+        "commands": [
+            {
+                "command": "parca.listRemote",
+                "title": "PARCA: List Remote Assets"
+            },
+            {
+                "command": "parca.install",
+                "title": "PARCA: Install Asset"
+            },
+            {
+                "command": "parca.list",
+                "title": "PARCA: List Installed Assets"
+            },
+            {
+                "command": "parca.resolve",
+                "title": "PARCA: Resolve Assets"
+            },
+            {
+                "command": "parca.publish",
+                "title": "PARCA: Publish Asset Version"
+            },
+            {
+                "command": "parca.refresh",
+                "title": "PARCA: Refresh",
+                "icon": "$(refresh)"
+            }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "parca",
+                    "title": "PARCA Assets",
+                    "icon": "$(package)"
+                }
+            ]
+        },
+        "views": {
+            "parca": [
+                {
+                    "id": "parca.installedAssets",
+                    "name": "Installed Assets"
+                }
+            ]
+        },
+        "menus": {
+            "view/title": [
+                {
+                    "command": "parca.refresh",
+                    "when": "view == parca.installedAssets",
+                    "group": "navigation"
+                }
+            ]
+        }
+    },
+    "dependencies": {
+        "js-yaml": "^4.1.0",
+        "semver": "^7.6.0"
+    },
+    "devDependencies": {
+        "typescript": "^5.3.0",
+        "@types/node": "^20.11.0",
+        "@types/vscode": "^1.85.0",
+        "@types/js-yaml": "^4.0.9",
+        "@types/semver": "^7.5.0"
+    }
+}
